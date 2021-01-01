@@ -23,11 +23,12 @@ public class ArticleSpecification implements Specification<Article> {
             return builder.isTrue(builder.literal(true)); // always return true if there was no filter
 
         }
-        return builder.equal(root.get("category"), this.category);
+        return builder.equal(root.get("category"), this.category); // retrieve articles by category
 
 
     }
 
+    //this function is for checking if the article title or main section conatin a sentence or a word
     public static Specification<Article> articleContains(String term) {
         return (artice, cq, cb) -> cb.or(cb.like(artice.get("title"), "%" + term + "%"),cb.like(artice.get("details"),"%" + term + "%"));
     }
